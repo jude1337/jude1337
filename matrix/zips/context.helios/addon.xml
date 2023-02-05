@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="context.helios" version="3.0.1" name="Helios - Global Context Menu Items" provider-name="jude1337">
+	<requires>
+		<import addon="xbmc.addon" version="17.9.910" />
+		<import addon="xbmc.python" version="3.0.0" />
+	</requires>
+	<extension point="kodi.context.item">
+		<menu id="kodi.core.main">
+			<item library="context.py" args="quickRresume">
+				<label>$ADDON[context.helios 30000]</label>
+				<visible>String.IsEmpty(Window(home).Property(context.helios.quickResume)) + String.StartsWith(ListItem.path,plugin://plugin.video.helios/)+String.IsEqual(ListItem.dbtype,tvshow)</visible>
+			</item>
+			<item library="context.py" args="shuffle">
+				<label>$ADDON[context.helios 30001]</label>
+				<visible>String.IsEmpty(Window(home).Property(context.helios.shuffle)) + String.StartsWith(ListItem.path,plugin://plugin.video.helios/)+[String.IsEqual(ListItem.dbtype,tvshow)|String.IsEqual(ListItem.dbtype,episode)]</visible>
+			</item>
+			<item library="context.py" args="playFromRandomPoint">
+				<label>$ADDON[context.helios 30002]</label>
+				<visible>String.IsEmpty(Window(home).Property(context.helios.playFromRandomPoint)) + String.StartsWith(ListItem.path,plugin://plugin.video.helios/)+String.IsEqual(ListItem.dbtype,tvshow)</visible>
+			</item>
+			<item library="context.py" args="rescrape">
+				<label>$ADDON[context.helios 30003]</label>
+				<visible>String.IsEmpty(Window(home).Property(context.helios.rescrape)) + String.StartsWith(ListItem.path,plugin://plugin.video.helios/)+[String.IsEqual(ListItem.dbtype,episode)|String.IsEqual(ListItem.dbtype,movie)]</visible>
+			</item>
+			<item library="context.py" args="rescrape_ss">
+				<label>$ADDON[context.helios 30010]</label>
+				<visible>String.IsEmpty(Window(home).Property(context.helios.rescrape_ss)) + String.StartsWith(ListItem.path,plugin://plugin.video.helios/)+[String.IsEqual(ListItem.dbtype,episode)|String.IsEqual(ListItem.dbtype,movie)]</visible>
+			</item>
+			<item library="context.py" args="sourceSelect">
+				<label>$ADDON[context.helios 30004]</label>
+				<visible>String.IsEmpty(Window(home).Property(context.helios.sourceSelect)) + String.StartsWith(ListItem.path,plugin://plugin.video.helios/)+[String.IsEqual(ListItem.dbtype,episode)|String.IsEqual(ListItem.dbtype,movie)]</visible>
+			</item>
+			<item library="context.py" args="findSimilar">
+				<label>$ADDON[context.helios 30005]</label>
+				<visible>String.IsEmpty(Window(home).Property(context.helios.findSimilar)) + String.StartsWith(ListItem.path,plugin://plugin.video.helios/)+[String.IsEqual(ListItem.dbtype,tvshow)|String.IsEqual(ListItem.dbtype,movie)]</visible>
+			</item>
+			<item library="context.py" args="browseShow">
+				<label>$ADDON[context.helios 30006]</label>
+				<visible>String.IsEmpty(Window(home).Property(context.helios.browseShow)) + String.StartsWith(ListItem.path,plugin://plugin.video.helios/)+[String.IsEqual(ListItem.dbtype,episode)|String.IsEqual(ListItem.dbtype,season)|String.IsEqual(ListItem.dbtype,tvshow)]</visible>
+			</item>
+			<item library="context.py" args="browseSeason">
+				<label>$ADDON[context.helios 30007]</label>
+				<visible>String.IsEmpty(Window(home).Property(context.helios.browseSeason)) + String.StartsWith(ListItem.path,plugin://plugin.video.helios/)+[String.IsEqual(ListItem.dbtype,episode)]</visible>
+			</item>
+			<item library="context.py" args="traktManager">
+				<label>$ADDON[context.helios 30008]</label>
+				<visible>String.IsEmpty(Window(home).Property(context.helios.traktManager)) + String.StartsWith(ListItem.path,plugin://plugin.video.helios/)+[String.IsEqual(ListItem.dbtype,episode)|String.IsEqual(ListItem.dbtype,tvshow)|String.IsEqual(ListItem.dbtype,season)|String.IsEqual(ListItem.dbtype,movie)]</visible>
+			</item>
+		</menu>
+	</extension>
+	<extension point="xbmc.service" library="service.py" />
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Helios - Global Context Menu Items</summary>
+		<summary lang="nl">Helios - Algemene contextmenu-items</summary>
+		<description lang="en">Adds Context Menu items for Helios menu items throughout Kodi</description>
+		<description lang="nl">Voegt contextmenu-items toe voor Helios-menu-items in Kodi</description>
+		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+		<forum></forum>
+		<website></website>
+		<source></source>
+		<disclaimer lang="en"></disclaimer>
+		<assets>
+			<icon>resources/images/ico-helios-3.png</icon>
+			<fanart>fanart-helios-3.png</fanart>
+			<clearlogo>resources/images/logo-helios-3.png</clearlogo>
+			<poster>resources/images/poster-helios-3.png</poster>
+		</assets>
+		<news>
+			Changelog 3.0.1
+			Fix Shuffle play copy pasta mix up		
+			Resolve settings not showing in Kodi
+
+			Changelog 3.0.0
+			Re-write of context menu addon, supporting py3 only (Matrix and above)
+			Update icons to match Helios 3.0.0 release
+			Update language support set to match Helios (add auto-translated Hebrew)
+
+			Changelog 2.2.0
+			Added "Rescrape and Source Select" context menu item.
+
+			Changelog 2.1.2
+			Added Polish translation
+
+			Changelog 2.1.1:
+			Implemented a workaround for broken future.backports module method (fixes Leia issues)
+
+			Changelog 2.1.0:
+			Refactored code to modern standards
+			Use backported URL lib for py2 to ensure unicode compatibility
+			Extracted out common functions and reused
+			Add settings to enable/disable individual items
+			Add more localizations
+			Add GitHub issue templates
+
+			Changelog 2.0.2:
+			Make python version agnostic
+
+			Changelog 2.0.1:
+			Fixed addon icons/fanart
+
+			Changelog 2.0.0:
+			Rework for Helios 2.0
+		</news>
+	</extension>
+</addon>
